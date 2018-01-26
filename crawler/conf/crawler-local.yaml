@@ -51,12 +51,25 @@ topology.max.spout.pending: 100
 topology.debug: false
 
 # ElasticSearch configuration
-es.hostname: "127.0.0.1"
-es.transport.port: 9300
+es.hostname: "localhost"
+es.rest.port: 9200
 
 es.urls.index.name: "cf-example-urls"
-es.docs.index.name: "cf-example-docs"
-es.httpsource.index.name: "cf-example-http_sources"
 es.urls.doc.type: "url"
+es.docs.index.name: "cf-example-docs"
 es.docs.doc.type: "doc"
+es.httpsource.index.name: "cf-example-http_sources"
 es.httpsource.doc.type: "http_source"
+
+# MetricsConsumer configuration
+es.metrics.addresses: "localhost:9200"
+es.metrics.index.name: "cf-example-metrics"
+es.metrics.doc.type: "datapoint"
+es.metrics.cluster.name: "elasticsearch"
+es.metrics.blacklist:
+  - "__"
+  - "uptime"
+  - "memory"
+  - "GC"
+  - "newWorkerEvent"
+  - "startTimeSecs"

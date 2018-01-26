@@ -8,7 +8,7 @@ There will be no need to write any code, just change the configuration files, cr
 
 ### Prerequisites
 
-ElasticSearch v5.5.x server must be running on localhost:9200 before executing installation commands.
+ElasticSearch v6.1.x server must be running on localhost:9200 before executing installation commands.
 
 ### Installing and running management UI
 
