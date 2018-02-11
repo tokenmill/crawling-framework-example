@@ -51,14 +51,8 @@
 
     <repositories>
         <repository>
-            <id>elasticsearch-releases</id>
-            <url>https://artifacts.elastic.co/maven</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
     </repositories>
 </project>
