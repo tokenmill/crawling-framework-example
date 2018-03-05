@@ -1,0 +1,57 @@
+---
+# This playbook uses the ping module to test connectivity to Linux hosts
+- name: Orunmila
+  hosts: orunmila
+  remote_user: ubuntu
+
+  tasks:
+    - name: install system utils
+      become: true
+      shell: |
+        apt-get install -y unzip
+        apt-get install -y maven
+
+    - name: install Oracle Java
+      become: true
+      shell: |
+        sudo apt-get install -y python-software-properties debconf-utils
+        sudo add-apt-repository ppa:webupd8team/java
+        sudo apt-get update
+        echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
+        sudo apt-get -y install oracle-java8-installer
+
+    - name: install ES
+      become: true
+      shell: |
+        sudo apt-get -y install apt-transport-https
+        wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+        echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
+        sudo apt-get update && sudo apt-get -y install elasticsearch
+        sudo apt-get update && sudo apt-get -y install kibana
+
+    - name: move default conf files
+      become: true
+      copy:
+        src: kibana.yml
+        dest: /etc/kibana/kibana.yml
+
+    - name: start ES and Kibana
+      shell: |
+        sudo systemctl enable elasticsearch.service
+        sudo systemctl enable kibana.service
+        sudo -i service elasticsearch restart
+        sudo -i service kibana restart
+
+    - name: download and run CF config
+      shell: |
+        wget wget https://github.com/tokenmill/crawling-framework/archive/master.zip
+        unzip master.zip
+        rm master.zip
+        cd crawling-framework-master/
+        ./bin/create-es-indices.sh localhost cf-example
+        cd ..
+        wget https://github.com/tokenmill/crawling-framework-example/archive/master.zip
+        unzip master.zip
+        cd crawling-framework-example-master
+        nohup ./bin/run-management-ui.sh &
+        nohup ./bin/run-crawler.sh &
