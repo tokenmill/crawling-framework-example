@@ -1,7 +1,7 @@
 ---
 # This playbook uses the ping module to test connectivity to Linux hosts
 - name: Orunmila
-  hosts: orunmila
+  hosts: aws
   remote_user: ubuntu
 
   tasks:
@@ -36,6 +36,7 @@
         dest: /etc/kibana/kibana.yml
 
     - name: start ES and Kibana
+      become: true
       shell: |
         sudo systemctl enable elasticsearch.service
         sudo systemctl enable kibana.service
@@ -47,9 +48,7 @@
         wget wget https://github.com/tokenmill/crawling-framework/archive/master.zip
         unzip master.zip
         rm master.zip
-        cd crawling-framework-master/
-        ./bin/create-es-indices.sh localhost cf-example
-        cd ..
+        (cd crawling-framework-master/ ; ./bin/create-es-indices.sh localhost cf-example)
         wget https://github.com/tokenmill/crawling-framework-example/archive/master.zip
         unzip master.zip
         cd crawling-framework-example-master
