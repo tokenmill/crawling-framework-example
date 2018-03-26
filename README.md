@@ -105,3 +105,6 @@ ansible-playbook playbook2.yml --ask-become-pass -v
 
 [orunmila]
 127.0.0.1:2222
+
+[aws]
+ssh ubuntu@18.222.39.167
