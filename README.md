@@ -25,7 +25,7 @@ After that clone Example project and run crawling management UI.
 ```
 git clone git@github.com:tokenmill/crawling-framework-example.git
 cd crawling-framework-example
-bin/run-management-ui.sh
+bin/run-administration-ui.sh
 ```
 
 Once started open http://localhost:8081/ which will show empty crawling setup. In order to populate it with pre-configured Science News setup:
