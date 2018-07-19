@@ -96,15 +96,3 @@ es.docs.index.name=[APP NAME]-docs
 This gets the configuration in order and you can run crawler management UI *bin/run-management-ui.sh* 
 
 Setup your crawl sources and after Storm Crawler can be started to fetch the specified content *bin/run-crawler.sh*
-
-
-## Ansible
-
-ansible-playbook playbook2.yml --ask-become-pass -v
-/etc/ansible/hosts
-
-[orunmila]
-127.0.0.1:2222
-
-[aws]
-ssh ubuntu@18.222.39.167
