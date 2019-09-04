@@ -1,3 +1,7 @@
+<a href="http://www.tokenmill.lt">
+      <img src=".github/tokenmill-logo.svg" width="125" height="125" align="right" />
+</a>
+
 # Crawling Framework Example
 
 This repository contains a sample [Crawling Framework](https://github.com/tokenmill/crawling-framework) configuration. It shows how to use Crawling Framework to setup a simple science news crawler, write results to [ElasticSearch](https://www.elastic.co/products/elasticsearch). You can use this configuration to set up your own crawler.
@@ -96,3 +100,9 @@ es.docs.index.name=[APP NAME]-docs
 This gets the configuration in order and you can run crawler management UI *bin/run-management-ui.sh* 
 
 Setup your crawl sources and after Storm Crawler can be started to fetch the specified content *bin/run-crawler.sh*
+
+## License
+
+Copyright &copy; 2019 [TokenMill UAB](http://www.tokenmill.lt).
+
+Distributed under the The Apache License, Version 2.0.
